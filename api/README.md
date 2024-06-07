@@ -10,4 +10,6 @@
 - Customer
 - Category
 
-![image](https://github.com/vasujain275/InventoTrack/assets/69643310/17f323e7-35dd-4b29-9911-e11957168aa6)
+
+![image](https://github.com/vasujain275/InventoTrack/assets/69643310/4c2d9d70-d533-4aa8-ba37-80e91e9b417b)
+
