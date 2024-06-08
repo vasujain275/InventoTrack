@@ -13,4 +13,92 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model 
+enum Status {
+  PENDING /// Order created but not yet confirmed or processed.
+  CONFIRMED /// Order confirmed by the system or seller.
+  PROCESSING /// Order is being prepared or packaged.
+  SHIPPED /// Order dispatched and on its way.
+  DELIVERED /// Order delivered to the customer.
+  CANCELLED /// Order cancelled by customer or seller.
+  RETURNED /// Order returned by the customer.
+  REFUNDED /// Payment refunded to the customer.
+  FAILED /// Order processing failed.
+  ON_HOLD /// Order put on hold pending resolution.
+}
+
+model Product {
+  id          String     @id @default(uuid())
+  name        String
+  description String
+  seller      Seller     @relation("sellerProducts", fields: [sellerId], references: [id])
+  sellerId    String
+  categories  Category[]
+  price       Float
+  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime   @default(now())
+}
+
+model Admin {
+  id         String      @id @default(uuid())
+  name       String
+  email      String      @unique
+  warehouses Warehouse[]
+  updatedAt  DateTime    @updatedAt
+  createdAt  DateTime    @default(now())
+}
+
+model Seller {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  products  Product[]
+  orders    Order[]
+  updatedAt DateTime  @updatedAt
+  createdAt DateTime  @default(now())
+}
+
+model Customer {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  address   String
+  state     String
+  pinCode   Int
+  orders    Order[]
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  products    Product[]
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
+}
+
+model Warehouse {
+  id        String   @id @default(uuid())
+  name      String
+  orders    Order[]
+  state     String
+  pinCode   Int
+  admin     Admin    @relation("adminWarehouses", fields: [adminId], references: [id])
+  adminId   String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id          String    @id @default(uuid())
+  seller      Seller    @relation("sellerOrders", fields: [sellerId], references: [id])
+  sellerId    String
+  customer    Customer  @relation("customerOrders", fields: [customerId], references: [id])
+  customerId  String
+  warehouse   Warehouse @relation("warehouseOrders", fields: [warehouseId], references: [id])
+  warehouseId String
+  status      Status
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
