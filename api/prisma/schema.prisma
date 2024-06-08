@@ -27,34 +27,36 @@ enum Status {
 }
 
 model Product {
-  id          String     @id @default(uuid())
+  id          String   @id @default(uuid())
   name        String
   description String
-  seller      Seller     @relation("sellerProducts", fields: [sellerId], references: [id])
-  sellerId    String
-  categories  Category[]
   price       Float
-  updatedAt   DateTime   @updatedAt
-  createdAt   DateTime   @default(now())
+  seller      Seller   @relation(fields: [sellerId], references: [id])
+  category    Category @relation(fields: [categoryId], references: [id])
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  sellerId    String
+  categoryId  String
 }
 
 model Admin {
-  id         String      @id @default(uuid())
-  name       String
-  email      String      @unique
-  warehouses Warehouse[]
-  updatedAt  DateTime    @updatedAt
-  createdAt  DateTime    @default(now())
+  id          String    @id @default(uuid())
+  name        String
+  email       String    @unique
+  warehouse   Warehouse @relation(fields: [warehouseId], references: [id])
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
+  warehouseId String
 }
 
 model Seller {
   id        String    @id @default(uuid())
   name      String
   email     String    @unique
-  products  Product[]
-  orders    Order[]
   updatedAt DateTime  @updatedAt
   createdAt DateTime  @default(now())
+  Product   Product[]
+  Order     Order[]
 }
 
 model Customer {
@@ -64,41 +66,40 @@ model Customer {
   address   String
   state     String
   pinCode   Int
-  orders    Order[]
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
+  Order     Order[]
 }
 
 model Category {
   id          String    @id @default(uuid())
   name        String
   description String
-  products    Product[]
   updatedAt   DateTime  @updatedAt
   createdAt   DateTime  @default(now())
+  Product     Product[]
 }
 
 model Warehouse {
   id        String   @id @default(uuid())
   name      String
-  orders    Order[]
   state     String
   pinCode   Int
-  admin     Admin    @relation("adminWarehouses", fields: [adminId], references: [id])
-  adminId   String
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
+  Admin     Admin[]
+  Order     Order[]
 }
 
 model Order {
   id          String    @id @default(uuid())
-  seller      Seller    @relation("sellerOrders", fields: [sellerId], references: [id])
-  sellerId    String
-  customer    Customer  @relation("customerOrders", fields: [customerId], references: [id])
-  customerId  String
-  warehouse   Warehouse @relation("warehouseOrders", fields: [warehouseId], references: [id])
-  warehouseId String
   status      Status
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
+  customer    Customer  @relation(fields: [customerId], references: [id])
+  seller      Seller    @relation(fields: [sellerId], references: [id])
+  warehouse   Warehouse @relation(fields: [warehouseId], references: [id])
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
+  customerId  String
+  sellerId    String
+  warehouseId String
 }
