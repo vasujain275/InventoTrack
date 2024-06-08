@@ -94,6 +94,8 @@ model Warehouse {
 model Order {
   id          String    @id @default(uuid())
   status      Status
+  totalPrice  Float
+  totalItems  Int
   customer    Customer  @relation(fields: [customerId], references: [id])
   seller      Seller    @relation(fields: [sellerId], references: [id])
   warehouse   Warehouse @relation(fields: [warehouseId], references: [id])
