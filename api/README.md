@@ -17,6 +17,7 @@
 # API Routes
 
 ## Product Routes
+
 - **GET /api/v1/products**: Retrieve a list of all products.
 - **GET /api/v1/products/:id**: Retrieve a specific product by `id`.
 - **GET /api/v1/products/warehouse/:warehouseId**: Retrieve products for a specific warehouse by `warehouseId`.
@@ -28,6 +29,7 @@
 - **DELETE /api/v1/products/:id**: Delete a specific product by `id`.
 
 ## Admin Routes
+
 - **GET /api/v1/admins**: Retrieve a list of all admins.
 - **GET /api/v1/admins/:id**: Retrieve a specific admin by `id`.
 - **GET /api/v1/admins/email/:email**: Retrieve a specific admin by `email`.
@@ -37,6 +39,7 @@
 - **DELETE /api/v1/admins/:id**: Delete a specific admin by `id`.
 
 ## Seller Routes
+
 - **GET /api/v1/sellers**: Retrieve a list of all sellers.
 - **GET /api/v1/sellers/:id**: Retrieve a specific seller by `id`.
 - **GET /api/v1/sellers/email/:email**: Retrieve a specific seller by `email`.
@@ -46,6 +49,7 @@
 - **DELETE /api/v1/sellers/:id**: Delete a specific seller by `id`.
 
 ## Customer Routes
+
 - **GET /api/v1/customers**: Retrieve a list of all customers.
 - **GET /api/v1/customers/:id**: Retrieve a specific customer by `id`.
 - **GET /api/v1/customers/email/:email**: Retrieve a specific customer by `email`.
@@ -55,6 +59,7 @@
 - **DELETE /api/v1/customers/:id**: Delete a specific customer by `id`.
 
 ## Category Routes
+
 - **GET /api/v1/categories**: Retrieve a list of all categories.
 - **GET /api/v1/categories/:id**: Retrieve a specific category by `id`.
 - **POST /api/v1/categories**: Create a new category.
@@ -62,6 +67,7 @@
 - **DELETE /api/v1/categories/:id**: Delete a specific category by `id`.
 
 ## Warehouse Routes
+
 - **GET /api/v1/warehouses**: Retrieve a list of all warehouses.
 - **GET /api/v1/warehouses/:id**: Retrieve a specific warehouse by `id`.
 - **POST /api/v1/warehouses**: Create a new warehouse.
@@ -69,6 +75,7 @@
 - **DELETE /api/v1/warehouses/:id**: Delete a specific warehouse by `id`.
 
 ## Order Routes
+
 - **GET /api/v1/orders**: Retrieve a list of all orders.
 - **GET /api/v1/orders/:id**: Retrieve a specific order by `id`.
 - **GET /api/v1/orders/warehouse/:warehouseId**: Retrieve orders for a specific warehouse by `warehouseId`.
@@ -82,7 +89,9 @@
 - **DELETE /api/v1/orders/:id**: Delete a specific order by `id`.
 
 ## Summary of Routes with Parameters
+
 1. **GET Routes**:
+
    - `/api/v1/products`
    - `/api/v1/products/:id`
    - `/api/v1/products/warehouse/:warehouseId`
@@ -112,6 +121,7 @@
    - `/api/v1/orders/:id/warehouse/:warehouseId`
 
 2. **POST Routes**:
+
    - `/api/v1/products`
    - `/api/v1/admins`
    - `/api/v1/sellers`
@@ -121,6 +131,7 @@
    - `/api/v1/orders`
 
 3. **PUT Routes**:
+
    - `/api/v1/products/:id`
    - `/api/v1/admins/:id`
    - `/api/v1/admins/email/:email`
