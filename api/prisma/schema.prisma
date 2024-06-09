@@ -29,33 +29,35 @@ enum Status {
 model Product {
   id               String             @id @default(uuid())
   name             String
-  description      String
+  description      String?
   price            Float
   seller           Seller             @relation(fields: [sellerId], references: [id])
-  category         Category           @relation(fields: [categoryId], references: [id])
+  category         Category?          @relation(fields: [categoryId], references: [id])
   updatedAt        DateTime           @updatedAt
   createdAt        DateTime           @default(now())
   sellerId         String
-  categoryId       String
+  categoryId       String?
   Order            Order?             @relation(fields: [orderId], references: [id])
   orderId          String?
   ProductWarehouse ProductWarehouse[]
 }
 
 model Admin {
-  id          String    @id @default(uuid())
+  id          String     @id @default(uuid())
   name        String
-  email       String    @unique
-  warehouse   Warehouse @relation(fields: [warehouseId], references: [id])
-  updatedAt   DateTime  @updatedAt
-  createdAt   DateTime  @default(now())
-  warehouseId String
+  email       String     @unique
+  password    String
+  warehouse   Warehouse? @relation(fields: [warehouseId], references: [id])
+  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime   @default(now())
+  warehouseId String?
 }
 
 model Seller {
   id        String    @id @default(uuid())
   name      String
   email     String    @unique
+  password  String
   updatedAt DateTime  @updatedAt
   createdAt DateTime  @default(now())
   Product   Product[]
@@ -66,6 +68,7 @@ model Customer {
   id        String   @id @default(uuid())
   name      String
   email     String   @unique
+  password  String
   address   String
   state     String
   pinCode   Int
@@ -77,7 +80,7 @@ model Customer {
 model Category {
   id          String    @id @default(uuid())
   name        String
-  description String
+  description String?
   updatedAt   DateTime  @updatedAt
   createdAt   DateTime  @default(now())
   Product     Product[]

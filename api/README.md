@@ -13,7 +13,6 @@
 
 ![image](https://github.com/vasujain275/InventoTrack/assets/69643310/bb668fa3-45f5-4326-8251-6b037ff5b153)
 
-
 # API Routes
 
 ## Product Routes

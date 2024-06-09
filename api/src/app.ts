@@ -1,10 +1,11 @@
-import buildServer from "./server"
+import buildServer from "./server";
+import adminRoutes from "./modules/admin/admin.route";
 
 const server = buildServer();
 
 async function main() {
   await server.listen({
-    port: process.env.PORT || 8069,
+    port: 8069,
     host: "0.0.0.0",
   });
 
@@ -17,4 +18,4 @@ async function main() {
   });
 }
 
-main()
+main();

@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import adminRoutes from "./modules/admin/admin.route";
 
 function buildServer() {
   const server = Fastify({
@@ -9,9 +10,11 @@ function buildServer() {
     },
   });
 
-  server.get("/healthcheck", async function() {
+  server.get("/v1/healthcheck", async function () {
     return { status: "OK" };
   });
+
+  server.register(adminRoutes, { prefix: "v1/admin" });
 
   return server;
 }
