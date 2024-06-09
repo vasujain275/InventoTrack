@@ -9,8 +9,10 @@
 - Seller
 - Customer
 - Category
+- ProductWarehouse
 
-![image](https://github.com/vasujain275/InventoTrack/assets/69643310/4c2d9d70-d533-4aa8-ba37-80e91e9b417b)
+![image](https://github.com/vasujain275/InventoTrack/assets/69643310/bb668fa3-45f5-4326-8251-6b037ff5b153)
+
 
 # API Routes
 
