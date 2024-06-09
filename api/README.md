@@ -17,6 +17,10 @@
 ## Product Routes
 - **GET /api/v1/products**: Retrieve a list of all products.
 - **GET /api/v1/products/:id**: Retrieve a specific product by `id`.
+- **GET /api/v1/products/warehouse/:warehouseId**: Retrieve products for a specific warehouse by `warehouseId`.
+- **GET /api/v1/products/seller/:sellerId**: Retrieve products for a specific seller by `sellerId`.
+- **GET /api/v1/products/category/:categoryId**: Retrieve products for a specific category by `categoryId`.
+- **GET /api/v1/products/:id/warehouse/:warehouseId**: Retrieve a specific product by `id` and `warehouseId`.
 - **POST /api/v1/products**: Create a new product.
 - **PUT /api/v1/products/:id**: Update a specific product by `id`.
 - **DELETE /api/v1/products/:id**: Delete a specific product by `id`.
@@ -70,21 +74,19 @@
 - **GET /api/v1/orders/customer/:customerId**: Retrieve orders for a specific customer by `customerId`.
 - **GET /api/v1/orders/category/:categoryId**: Retrieve orders for a specific category by `categoryId`.
 - **GET /api/v1/orders/date-range?startDate=<startDate>&endDate=<endDate>**: Retrieve orders within a specific date range using query parameters `startDate` and `endDate`.
+- **GET /api/v1/orders/:id/warehouse/:warehouseId**: Retrieve a specific order by `id` and `warehouseId`.
 - **POST /api/v1/orders**: Create a new order.
 - **PUT /api/v1/orders/:id**: Update a specific order by `id`.
 - **DELETE /api/v1/orders/:id**: Delete a specific order by `id`.
-
-## ProductWarehouse Routes
-- **GET /api/v1/product-warehouses**: Retrieve a list of all product-warehouse associations.
-- **GET /api/v1/product-warehouses/:id**: Retrieve a specific product-warehouse association by `id`.
-- **POST /api/v1/product-warehouses**: Create a new product-warehouse association.
-- **PUT /api/v1/product-warehouses/:id**: Update a specific product-warehouse association by `id`.
-- **DELETE /api/v1/product-warehouses/:id**: Delete a specific product-warehouse association by `id`.
 
 ## Summary of Routes with Parameters
 1. **GET Routes**:
    - `/api/v1/products`
    - `/api/v1/products/:id`
+   - `/api/v1/products/warehouse/:warehouseId`
+   - `/api/v1/products/seller/:sellerId`
+   - `/api/v1/products/category/:categoryId`
+   - `/api/v1/products/:id/warehouse/:warehouseId`
    - `/api/v1/admins`
    - `/api/v1/admins/:id`
    - `/api/v1/admins/email/:email`
@@ -105,8 +107,7 @@
    - `/api/v1/orders/customer/:customerId`
    - `/api/v1/orders/category/:categoryId`
    - `/api/v1/orders/date-range?startDate=<startDate>&endDate=<endDate>`
-   - `/api/v1/product-warehouses`
-   - `/api/v1/product-warehouses/:id`
+   - `/api/v1/orders/:id/warehouse/:warehouseId`
 
 2. **POST Routes**:
    - `/api/v1/products`
@@ -116,7 +117,6 @@
    - `/api/v1/categories`
    - `/api/v1/warehouses`
    - `/api/v1/orders`
-   - `/api/v1/product-warehouses`
 
 3. **PUT Routes**:
    - `/api/v1/products/:id`
@@ -129,7 +129,6 @@
    - `/api/v1/categories/:id`
    - `/api/v1/warehouses/:id`
    - `/api/v1/orders/:id`
-   - `/api/v1/product-warehouses/:id`
 
 4. **DELETE Routes**:
    - `/api/v1/products/:id`
@@ -139,4 +138,3 @@
    - `/api/v1/categories/:id`
    - `/api/v1/warehouses/:id`
    - `/api/v1/orders/:id`
-   - `/api/v1/product-warehouses/:id`
