@@ -14,7 +14,7 @@ function buildServer() {
     return { status: "OK" };
   });
 
-  server.register(adminRoutes, { prefix: "v1/admin" });
+  server.register(adminRoutes, { prefix: "v1/admins" });
 
   return server;
 }
