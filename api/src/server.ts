@@ -10,9 +10,7 @@ function buildServer() {
     },
   });
 
-  server.get("/v1/healthcheck", async function () {
-    return { status: "OK" };
-  });
+  server.get("/v1/healthcheck", async () => ({ status: "OK" }));
 
   server.register(adminRoutes, { prefix: "v1/admins" });
 

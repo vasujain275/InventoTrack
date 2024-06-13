@@ -1,6 +1,6 @@
-import { FastifyReply, FastifyRequest } from "fastify";
+import type { FastifyReply, FastifyRequest } from "fastify";
 import createAdmin from "./admin.service";
-import { CreateAdminInput } from "./admin.schema";
+import type { CreateAdminInput } from "./admin.schema";
 import prisma from "../../utils/prisma";
 
 async function registerAdminHandler(
