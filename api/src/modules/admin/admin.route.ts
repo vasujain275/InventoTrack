@@ -20,9 +20,39 @@ async function adminRoutes(server: FastifyInstance) {
     },
     registerAdminHandler
   );
-  server.get("/", getAdminsHandler);
-  server.get("/:id", getAdminByIdHandler);
-  server.get("/email/:email", getAdminByEmailHandler);
+  server.get(
+    "/",
+    {
+      schema: {
+        response: {
+          200: $ref("getAdminsReplySchema"),
+        },
+      },
+    },
+    getAdminsHandler
+  );
+  server.get(
+    "/:id",
+    {
+      schema: {
+        response: {
+          200: $ref("createAdminReplySchema"),
+        },
+      },
+    },
+    getAdminByIdHandler
+  );
+  server.get(
+    "/email/:email",
+    {
+      schema: {
+        response: {
+          200: $ref("createAdminReplySchema"),
+        },
+      },
+    },
+    getAdminByEmailHandler
+  );
 }
 
 export default adminRoutes;

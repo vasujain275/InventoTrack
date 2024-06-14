@@ -27,12 +27,15 @@ const createAdminReplySchema = z.object({
   ...adminCore,
 });
 
+const getAdminsReplySchema = z.array(createAdminReplySchema);
+
 export type CreateAdminInput = z.infer<typeof createAdminSchema>;
 
 export const { schemas: adminSchemas, $ref } = buildJsonSchemas(
   {
     createAdminSchema,
     createAdminReplySchema,
+    getAdminsReplySchema,
   },
   { $id: "AdminSchema" }
 );
