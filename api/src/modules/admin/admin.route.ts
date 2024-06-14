@@ -5,9 +5,21 @@ import {
   getAdminByIdHandler,
   getAdminByEmailHandler,
 } from "./admin.controller";
+import { $ref } from "./admin.schema";
 
 async function adminRoutes(server: FastifyInstance) {
-  server.post("/", registerAdminHandler);
+  server.post(
+    "/",
+    {
+      schema: {
+        body: $ref("createAdminSchema"),
+        response: {
+          201: $ref("createAdminReplySchema"),
+        },
+      },
+    },
+    registerAdminHandler
+  );
   server.get("/", getAdminsHandler);
   server.get("/:id", getAdminByIdHandler);
   server.get("/email/:email", getAdminByEmailHandler);

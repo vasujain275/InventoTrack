@@ -3,6 +3,7 @@ import buildServer from "./server";
 const server = buildServer();
 
 async function main() {
+
   await server.listen({
     port: 8069,
     host: "0.0.0.0",

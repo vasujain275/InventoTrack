@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import adminRoutes from "./modules/admin/admin.route";
+import { adminSchemas } from "./modules/admin/admin.schema";
 
 function buildServer() {
   const server = Fastify({
@@ -9,6 +10,9 @@ function buildServer() {
       },
     },
   });
+  for (const schema of adminSchemas) {
+    server.addSchema(schema);
+  }
 
   server.get("/v1/healthcheck", async () => ({ status: "OK" }));
 
