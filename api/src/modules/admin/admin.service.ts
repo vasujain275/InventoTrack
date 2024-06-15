@@ -1,16 +1,22 @@
-import * as argon2 from "argon2";
-
 import prisma from "../../utils/prisma";
 import type { CreateAdminInput } from "./admin.schema";
+import { hashPassword } from "../../utils/passwords";
 
-export default async function createAdmin(input: CreateAdminInput) {
+export async function createAdmin(input: CreateAdminInput) {
   const { password, ...rest } = input;
 
-  const hash = await argon2.hash(password);
-
+  const hash = await hashPassword(password);
   const admin = await prisma.admin.create({
     data: { ...rest, password: hash },
   });
 
   return admin;
+}
+
+export async function findAdminByEmail(email: string) {
+  return await prisma.admin.findUnique({
+    where: {
+      email,
+    },
+  });
 }

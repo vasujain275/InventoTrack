@@ -29,13 +29,33 @@ const createAdminReplySchema = z.object({
 
 const getAdminsReplySchema = z.array(createAdminReplySchema);
 
+const loginAdminSchema = z.object({
+  email: z
+    .string({
+      required_error: "Email is required",
+      invalid_type_error: "Email must be a string type",
+    })
+    .email(),
+  password: z.string({
+    required_error: "Password is required",
+    invalid_type_error: "Password must be a string type",
+  }),
+});
+
+const loginAdminReplySchema = z.object({
+  accessToken: z.string(),
+});
+
 export type CreateAdminInput = z.infer<typeof createAdminSchema>;
+export type LoginAdminSInput = z.infer<typeof loginAdminSchema>;
 
 export const { schemas: adminSchemas, $ref } = buildJsonSchemas(
   {
     createAdminSchema,
     createAdminReplySchema,
     getAdminsReplySchema,
+    loginAdminReplySchema,
+    loginAdminSchema,
   },
   { $id: "AdminSchema" }
 );

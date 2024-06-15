@@ -4,6 +4,7 @@ import {
   getAdminsHandler,
   getAdminByIdHandler,
   getAdminByEmailHandler,
+  adminloginHandler,
 } from "./admin.controller";
 import { $ref } from "./admin.schema";
 
@@ -52,6 +53,18 @@ async function adminRoutes(server: FastifyInstance) {
       },
     },
     getAdminByEmailHandler
+  );
+  server.post(
+    "/login",
+    {
+      schema: {
+        body: $ref("loginAdminSchema"),
+        response: {
+          200: $ref("loginAdminReplySchema"),
+        },
+      },
+    },
+    adminloginHandler
   );
 }
 
