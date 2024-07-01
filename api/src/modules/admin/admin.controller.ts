@@ -63,7 +63,7 @@ async function getAdminByEmailHandler(
 ) {
   const email = request.params.email;
   try {
-    const admin = findAdminByEmail(email);
+    const admin = await findAdminByEmail(email);
     return reply.code(200).send(admin);
   } catch (e) {
     console.log(e);
